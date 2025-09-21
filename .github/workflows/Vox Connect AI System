@@ -1,0 +1,9 @@
+1. Patient Input → User enters symptoms via touchscreen or voice.
+
+2. Symptom Analysis → NLP extracts and categorizes symptoms.
+
+3. Illness Prediction → AI matches symptoms to likely conditions.
+
+4. Doctor Referral → System recommends the appropriate specialist.
+
+5. Room Guidance → Patient is directed to the correct department.
