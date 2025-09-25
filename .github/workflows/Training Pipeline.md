@@ -1,5 +1,9 @@
 # Training Pipiline
 
+This pipeline outlines the full process of preparing, training, evaluating, and deploying the machine learning model that powers Vox Connect AI’s illness prediction engine.
+
+---
+
 ## 1 Data cleaning  
 
  Goal: Ensure the dataset is clean, consistent, and usable for training.
