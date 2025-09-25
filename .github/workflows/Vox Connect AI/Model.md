@@ -1,6 +1,8 @@
 #  Model Evaluation Strategy — Vox Connect AI
 To ensure Vox Connect AI delivers reliable illness predictions in clinical settings, the machine learning model is rigorously evaluated using standard metrics and real-world simulation. The goal is to measure how accurately the model maps patient symptoms to correct diagnoses.
 
+---
+
 ### Evaluation Metrics
 
  |Metric	|Purpose|
