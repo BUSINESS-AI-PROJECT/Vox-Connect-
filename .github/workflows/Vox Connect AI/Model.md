@@ -2,12 +2,14 @@
 To ensure Vox Connect AI delivers reliable illness predictions in clinical settings, the machine learning model is rigorously evaluated using standard metrics and real-world simulation. The goal is to measure how accurately the model maps patient symptoms to correct diagnoses.
 
 ### Evaluation Metrics
-Metric	Purpose
-- Accuracy	Measures overall correctness of predictions
-- Precision	Measures how many predicted diagnoses were actually correct
-- Recall	Measures how many actual diagnoses were successfully identified
-- F1 Score	Balances precision and recall for a single performance score
-- Confusion Matrix	Visualizes correct vs incorrect predictions across all diagnosis classes
+
+ |Metric	|Purpose|
+ |--------|-------|
+ |Accuracy	| Measures overall correctness of predictions|
+ |Precision	| Measures how many predicted diagnoses were actually correct|
+ |Recall	| Measures how many actual diagnoses were successfully identified|
+ |F1 Score |	Balances precision and recall for a single performance score|
+ |Confusion Matrix	| Visualizes correct vs incorrect predictions across all diagnosis classes|
   
 ### Evaluation Process
 
