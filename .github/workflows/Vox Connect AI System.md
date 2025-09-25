@@ -1,5 +1,8 @@
+# Machine Learnig 
 ## 1 Data cleaning  
 
+ Goal: Ensure the dataset is clean, consistent, and usable for training.
+ 
 df['symptoms'] = df['symptoms'].str.lower().str.replace('[^a-z, ]', '')
 df.drop_duplicates(inplace=True)
 
@@ -7,6 +10,8 @@ df.drop_duplicates(inplace=True)
 
 ## 2 Train-Test Split (80/20)
 
+ Goal: Separate data for training and evaluation.
+ 
 from sklearn.model_selection import train_test_split
 
 X = df[['symptoms', 'age', 'duration']]
@@ -41,6 +46,7 @@ Train multiple models and compare performance.
 from sklearn.ensemble import RandomForestClassifier
 model = RandomForestClassifier()
 model.fit(X_train_vectorized, y_train_encoded)
+
 ---
 ## 4 Evaluation
 
