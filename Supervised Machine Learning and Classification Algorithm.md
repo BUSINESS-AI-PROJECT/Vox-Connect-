@@ -1,6 +1,6 @@
-# Supervised Machine Learning and Classification
+Supervised Machine Learning and Classification
 
-# loading data:
+loading data:
 
 # Install dependencies as needed:
 pip install kagglehub[pandas-datasets]
