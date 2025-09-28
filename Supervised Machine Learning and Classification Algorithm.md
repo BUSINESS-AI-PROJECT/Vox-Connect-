@@ -1,90 +1,78 @@
-Supervised Machine Learning and Classification
+# Machine Learning Approach — Vox Connect AI 
 
-loading data:
+Vox Connect AI uses a supervised machine learning pipeline to predict illnesses based on patient-reported symptoms. The system is designed for real-time triage in clinics and municipal health centers, with a focus on speed, interpretability, and offline deployment.
 
-# Install dependencies as needed:
-pip install kagglehub[pandas-datasets]
-py
-import kagglehub
-import pandas as pd
-import numpy as np
-from kagglehub import KaggleDatasetAdapter
- 
-file_path = "disease_symptoms.csv"
-df = kagglehub.load_dataset(
-  KaggleDatasetAdapter.PANDAS,
-  "krish0202/symptom-based-disease-labeling-dataset",
-  file_path
-)
+## Problem Framing
+- **Type:** Multi-class classification
 
-print("DataFrame info:", df.info())
-print("\nFirst 5 records:", df.head())
+- **Input:** Patient symptoms, age, duration
 
+- **Output:** Predicted diagnosis (e.g., Influenza, Hypertension, Skin Allergy)
 
+## Dataset Summary
+**Each training entry includes:**
 
-# Separating features(independent variables to get predicted results):
-y = df['Disease']
+```python
+{
+  "symptoms": ["fever", "cough", "fatigue"],
+  "age": 34,
+  "duration": "3 days",
+  "diagnosis": "Influenza"
+}
+```
+* _Sources: Synthetic records, MedSymptomDB, MIMIC-III, WHO mappings_
 
-X = df.drop('Disease', axis=1)
+* _Preprocessing: Tokenization, vectorization, one-hot encoding of labels_
 
-print("\nFeatures (X) shape:", X.shape)
-print("Target (y) shape:", y.shape)
+## Algorithm Selection
 
+|Algorithm	|Reason for Use|
+|-------------|------------|
+|Logistic Regression	| Fast, interpretable baseline|
+|Decision Tree	| Rule-based logic, easy to visualize|
+|Random Forest	| Handles noisy data, improves accuracy|
+|Naive Bayes	| Lightweight, good for text-based symptom input|
+|Optional: MLP	| For deeper pattern recognition (if hardware allows)|
 
+## Feature Engineering
+- **Symptoms:** Tokenized and vectorized using TF-IDF or Bag-of-Words
 
-# Handling categorical data:
-X_encoded = pd.get_dummies(X, columns=X.columns)
+- **Age & Duration:** Normalized numeric inputs
 
-print("\nEncoded features (X_encoded) shape:", X_encoded.shape)
-print("First 5 encoded records:", X_encoded.head())
+- **Severity (optional):** Derived from symptom intensity keywords
 
+- **Language Support:** NLP pipeline built for English, with plans for isiZulu and Afrikaans
 
+## Training Pipeline
 
-# Data splitting into training and testing datasets: data split into 80% for training and 20% for testing:
+- **Data Cleaning:** Remove duplicates, normalize formats
 
-from sklearn.model_selection import train_test_split
+- **Split:** 80/20 train-test split
 
-X_train, X_test, y_train, y_test = train_test_split(
-    X_encoded, y, test_size=0.2, random_state=42
-)
+- **Model Training:** Fit selected algorithms
 
-print("\nTraining set size:", len(X_train))
-print("Testing set size:", len(X_test))
+- **Evaluation:** Accuracy, precision, recall, confusion matrix
 
+- **Export:** Save best model as .pkl or .onnx for deployment
 
+## Deployment Strategy
 
-# Choosing and training a classification model by using a Decision tree classifier (Algorithm): (first initializing the model, and second training the model on the training data)
+- **Environment:** Raspberry Pi or Jetson Nano
 
-from sklearn.tree import DecisionTreeClassifier
+- **Interface:** Python-based UI with real-time prediction
 
-model = DecisionTreeClassifier(random_state=42)
+- **Offline Capability:** No cloud dependency; runs locally
 
-model.fit(X_train, y_train)
+- **Fallback Logic:** If prediction confidence is low, refer to general practitioner
 
-print("\nModel training complete.")
+## Benefits of This Approach
 
+- Transparent and explainable predictions
 
+- Fast inference on low-power hardware
 
-# Evaluating the model's performance: (step 1, making predictions on the test dataset, step 2, calculating the model's accuracy, 3 printing the report for detailed metrics)
+- Easy to retrain with new labeled data
 
-from sklearn.metrics import accuracy_score, classification_report
+- Aligns with ethical AI principles in healthcare
 
-y_pred = model.predict(X_test)
-
-accuracy = accuracy_score(y_test, y_pred)
-print(f"\nModel Accuracy: {accuracy:.4f}")
-
-print("\nClassification Report:")
-print(classification_report(y_test, y_pred, zero_division=0))
-
-
-
-# New data prediction: (
-
-new_data = pd.DataFrame(columns=X_encoded.columns, data=[[0]*len(X_encoded.columns)])
-new_data['Symptom_headache'] = 1
-new_data['Symptom_fever'] = 1
-
-predicted_disease = model.predict(new_data)
-print("\nPredicted disease for new sample:", predicted_disease[0])
-
+  ---
