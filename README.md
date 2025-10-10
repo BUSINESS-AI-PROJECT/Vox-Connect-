@@ -45,7 +45,7 @@ To provide fast, accurate illness predictions using supervised machine learning,
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/vox-connect.git
+git clone https://github.com/BUSINESS-AI-PROJECT/Vox-Connect-.git
 cd vox-connect
 
 # Install dependencies
